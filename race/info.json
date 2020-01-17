@@ -1,9 +1,9 @@
 {
-    "AUTHOR": "Redjumpman",
-    "SHORT": "Race turtles to the finish line!",
-    "DESCRIPTION" : "Starts a turtle race against the bot and other players can join. Also includes a random credit prize.",
-    "DISABLED": false,
-    "NAME": "Race",
-    "TAGS": ["games", "economy", "racing", "mini game"],
-    "INSTALL_MSG": "Thank you for installing Race from Jumper Cogs.\nIf you like my cog please star my repo or post any issues on my github here:\nhttps://github.com/Redjumpman/Jumper-Cogs"
+    "author" : ["Cog Creations Lab | >_Xzadik#001"],
+    "install_msg" : "Thank you for installing race.",
+    "name" : "Race",
+    "short" : "Race turtles and other animals against your friends and the bot.",
+    "description" : "Race turtles and other animals against your friends. Allows for currency prizes, betting, and stat tracking.",
+    "tags" : ["Games", "Race", "Turtles", "Economy"],
+    "min_python_version": [3, 6, 0]
 }
