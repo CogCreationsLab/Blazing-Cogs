@@ -7,7 +7,11 @@ import random
 import os
 import time
 
+# Red
+from redbot.core import Config, bank, commands, checks
 
+# Discord
+import discord
 
 creditIcon = ""
 credits = ""
