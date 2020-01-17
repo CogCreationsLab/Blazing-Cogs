@@ -387,19 +387,17 @@ class Race:
         role_name = "Race"
         raceRole = discord.utils.get(server.roles, name=role_name)
         if raceRole is None:
-            await self.bot.create_role(server, name=role_name)
-            raceRole = discord.utils.get(server.roles, name=role_name)
-
+            raceRole = await server.create_role(name=role_name)
         self.game_teardown(data, force=True)
         data['Race Active'] = True
         data['Players'][author.id] = {}
         wait = settings['Time']
 
-        await self.bot.edit_role(server, raceRole, mentionable=True)
-        await self.bot.say(":triangular_flag_on_post: {} has started a race! Type ``{}race enter`` "
-                           "to join! :triangular_flag_on_post:\n{}The {} will "
+        await RaceRole.edit(mentionable=True)
+        await self.bot.say("🚩 {} has started a race! Type ``{}race enter`` "
+                           "to join! 🚩\n{}The {} will "
                            "begin in {} seconds!".format(author.mention, ctx.prefix, ' ' * 23, raceRole.mention, wait))
-        await self.bot.edit_role(server, raceRole, mentionable=False)
+        await RaceRole.edit(mentionable=False)
 
         await asyncio.sleep(wait)
 
