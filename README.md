@@ -1,5 +1,5 @@
 # Legend-Cogs (Red v2)
-<img src="https://imgur.com/a/NNvr7C4.png">
+<img src="https://imgur.com/a/NNvr7C4">
 
 [<img src="https://discordapp.com/api/guilds/374596069989810176/widget.png?style=shield">](http://discord.gg/Cvwx8RJ) [<img src="https://img.shields.io/badge/discord-py-blue.svg">](https://github.com/Rapptz/discord.py)
 
