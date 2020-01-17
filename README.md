@@ -32,4 +32,5 @@ To install a cog on your bot instance:
 ## Credits
 
 * [RED](https://github.com/Cog-Creators/Red-DiscordBot)
-
+* [>_Xzadik](https://github.com/XzadikApple)
+* [iClapCheeks](https://github.com/iclapcheeks)
