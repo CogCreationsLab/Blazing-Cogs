@@ -7,15 +7,10 @@ import random
 import os
 import time
 
-# Discord and Red Utils
-import discord
-from discord.ext import commands
-from __main__ import send_cmd_help
-from .utils import checks
-from .utils.dataIO import dataIO
 
-creditIcon = "https://i.imgur.com/TP8GXZb.png"
-credits = "Bot by GR8 | Titan"
+
+creditIcon = ""
+credits = ""
 
 animals = ((':rabbit2:', 'fast'), (':monkey:', 'fast'), (':cat2:', 'fast'), (':mouse2:', 'slow'),
            (':chipmunk:', 'fast'), (':rat:', 'fast'), (':dove:', 'fast'), (':bird:', 'fast'),
