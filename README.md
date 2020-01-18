@@ -1,5 +1,5 @@
 # Blazing-Cogs (Red v2 - v3)
-<img src="https://i.imgur.com/YRBaUVP.png">
+<img src="http://www.simpleimageresizer.com/_uploads/photos/4af69f8a/iTzBlazing_2_300x300.png">
 
 [<img src="https://discordapp.com/api/guilds/374596069989810176/widget.png?style=shield">](http://discord.gg/Cvwx8RJ) [<img src="https://img.shields.io/badge/discord-py-blue.svg">](https://github.com/Rapptz/discord.py)
 
