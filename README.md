@@ -1,7 +1,7 @@
-# Blazing-Cogs (Red v2 - v3)
+# Blazing-Cogs (Red v3) (Beta)
 <img src="http://www.simpleimageresizer.com/_uploads/photos/4af69f8a/iTzBlazing_3_250x250.png">
 
-   [<img src="https://discordapp.com/api/guilds/374596069989810176/widget.png?style=shield">](http://discord.gg/Cvwx8RJ) [<img       src="https://img.shields.io/badge/discord-py-blue.svg">](https://github.com/Rapptz/discord.py)
+[<img src="https://discordapp.com/api/guilds/374596069989810176/widget.png?style=shield">](http://discord.gg/Cvwx8RJ) [<img       src="https://img.shields.io/badge/discord-py-blue.svg">](https://github.com/Rapptz/discord.py)
 
 Made with Python and [RED](https://github.com/Cog-Creators/Red-DiscordBot).
 
