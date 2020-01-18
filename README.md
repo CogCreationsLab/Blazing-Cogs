@@ -29,7 +29,7 @@ To install a cog on your bot instance:
 [p] = Is your bot's command prefix.
 
 
-## Credits
+## Thanks To
 
 * [RED](https://github.com/Cog-Creators/Red-DiscordBot)
 * [>_Xzadik](https://github.com/XzadikApple)
