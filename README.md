@@ -1,7 +1,7 @@
 # Blazing-Cogs (Red v2 - v3)
 <img src="http://www.simpleimageresizer.com/_uploads/photos/4af69f8a/iTzBlazing_3_250x250.png">
 
-[<img src="https://discordapp.com/api/guilds/374596069989810176/widget.png?style=shield">](http://discord.gg/Cvwx8RJ) [<img       src="https://img.shields.io/badge/discord-py-blue.svg">](https://github.com/Rapptz/discord.py)
+&emsp[<img src="https://discordapp.com/api/guilds/374596069989810176/widget.png?style=shield">](http://discord.gg/Cvwx8RJ) [<img       src="https://img.shields.io/badge/discord-py-blue.svg">](https://github.com/Rapptz/discord.py)
 
 Made with Python and [RED](https://github.com/Cog-Creators/Red-DiscordBot).
 
@@ -29,7 +29,7 @@ To install a cog on your bot instance:
 [p] = Is your bot's command prefix.
 
 
-## Thanks To
+## Credit
 
 * [RED](https://github.com/Cog-Creators/Red-DiscordBot)
 * [>_Xzadik](https://github.com/XzadikApple)
