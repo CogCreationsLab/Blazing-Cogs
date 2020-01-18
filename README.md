@@ -35,3 +35,4 @@ To install a cog on your bot instance:
 * [>_Xzadik](https://github.com/XzadikApple)
 * [iClapCheeks](https://github.com/iclapcheeks)
 * [Weirdo914](https://github.com/Weirdo914)
+* [CRZA](https://github.com/CRZA5)
