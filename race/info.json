@@ -1,9 +1,0 @@
-{
-    "author" : ["Cog Creations Lab | >_Xzadik#001"],
-    "install_msg" : "Thank you for installing race.",
-    "name" : "Race",
-    "short" : "Race turtles and other animals against your friends and the bot.",
-    "description" : "Race turtles and other animals against your friends. Allows for currency prizes, betting, and stat tracking.",
-    "tags" : ["Games", "Race", "Turtles", "Economy"],
-    "min_python_version": [3, 6, 0]
-}
