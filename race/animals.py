@@ -1,9 +1,14 @@
 import random
-
+("", ""),
 racers = (
-    ("<:Bandit:751676116280016927> ", "fast"),
-    ("<:MegaKnight:751676158554144908> ", "fast"),
-    ("<:BattleRam:751676202284089384> ", "fast"),
+    ("<:BanditCard:751676116280016927> ", "fast"),
+    ("<:MegaKnightCard:751676158554144908> ", "fast"),
+    ("<:BattleRamCard:751676202284089384> ", "fast"),
+    ("<:IceSpiritCard:751678916196040734> ", "fast"),
+    ("<:FireSpiritsCard:751678981379457054> ", "fast"),
+    ("<:GoblinGiantCard:751679093141143583> ", "abberant"),
+    ("<:LavaHoundCard:751679989161918464> ", "abberant"),
+    ("<:GolemCard:751680015577382935> ", "slow"),
 )
 
 
