@@ -1,7 +1,7 @@
 import random
 
 racers = (
-    (":rabbit2:", "fast"),
+    (":Bandit:", "fast"),
     (":monkey:", "fast"),
     (":cat2:", "fast"),
 )
