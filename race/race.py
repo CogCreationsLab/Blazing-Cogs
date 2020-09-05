@@ -99,6 +99,10 @@ class Race(commands.Cog):
         await ctx.send(content=msg, embed=embed)
         await self._race_teardown(settings)
 
+        channel = ctx.message.channel
+        if channel.name != "race":
+            return await self.bot.say("You cannot run this command in this channel. Please run this command at #race")    
+        
     @race.command()
     async def stats(self, ctx, user: discord.Member = None):
         """Display your race stats."""
