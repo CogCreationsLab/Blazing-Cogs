@@ -67,12 +67,9 @@ class Race(commands.Cog):
     @race.command()
     async def start(self, ctx):
         """Begins a new race.
-
         You cannot start a new race until the active on has ended.
-
         If you are the only player in the race, you will race against
         your bot.
-
         The user who started the race is automatically entered into the race.
         """
         if self.active:
@@ -83,7 +80,7 @@ class Race(commands.Cog):
         current = await self.config.guild(ctx.guild).Games_Played()
         await self.config.guild(ctx.guild).Games_Played.set(current + 1)
         await ctx.send(
-            f"🚩 A race has begun! Type `{ctx.prefix}race enter` "
+            f"🚩 A race has begun! Type {ctx.prefix}race enter "
             f"to join the race! 🚩\nThe race will begin in "
             f"{wait} seconds!\n\n**{ctx.author.mention}** entered the race!"
         )
@@ -98,25 +95,6 @@ class Race(commands.Cog):
         msg, embed = self._build_end_screen(settings, currency, color)
         await ctx.send(content=msg, embed=embed)
         await self._race_teardown(settings)
-        
-        """Allows you to enter the race.
-
-        This command will return silently if a race has already started.
-        By not repeatedly telling the user that they can't enter the race, this
-        prevents spam.
-
-        """
-        if self.started:
-            return await ctx.send(
-                "A race has already started.  Please wait for the first one to finish before entering or starting a race."
-            )
-        elif ctx.author in self.players:
-            return await ctx.send("You have already entered the race.")
-        elif len(self.players) >= 14:
-            return await ctx.send("The maximum number of players has been reached.")
-        else:
-            self.players.append(ctx.author)
-            await ctx.send(f"{ctx.author.mention} has joined the race.")
 
     @race.command()
     async def stats(self, ctx, user: discord.Member = None):
@@ -157,11 +135,31 @@ class Race(commands.Cog):
             await bank.withdraw_credits(ctx.author, bet)
             await ctx.send(f"{ctx.author.mention} placed a {bet} {currency} bet on {str(user)}.")
 
+    @race.command()
+    async def enter(self, ctx):
+        """Allows you to enter the race.
+        This command will return silently if a race has already started.
+        By not repeatedly telling the user that they can't enter the race, this
+        prevents spam.
+        """
+        if self.started:
+            return await ctx.send(
+                "A race has already started.  Please wait for the first one to finish before entering or starting a race."
+            )
+        elif not self.active:
+            return await ctx.send("A race must be started using `{ctx.prefix} race start` before you can enter.")
+        elif ctx.author in self.players:
+            return await ctx.send("You have already entered the race.")
+        elif len(self.players) >= 14:
+            return await ctx.send("The maximum number of players has been reached.")
+        else:
+            self.players.append(ctx.author)
+            await ctx.send(f"{ctx.author.mention} has joined the race.")
+
     @race.command(hidden=True)
     @checks.admin_or_permissions(administrator=True)
     async def clear(self, ctx):
         """ONLY USE THIS COMMAND FOR DEBUG PURPOSES
-
         You shouldn't use this command unless the race is stuck
         or you are debugging."""
         self.clear_local()
@@ -171,7 +169,6 @@ class Race(commands.Cog):
     @checks.admin_or_permissions(administrator=True)
     async def wipe(self, ctx):
         """This command will wipe ALL race data.
-
         You are given a confirmation dialog when using this command.
         If you decide to wipe your data, all stats and settings will be deleted.
         """
@@ -207,7 +204,6 @@ class Race(commands.Cog):
     @setrace.command()
     async def wait(self, ctx, wait: int):
         """Changes the wait time before a race starts.
-
         This only affects the period where race is still waiting
         for more participants to join the race."""
         if wait < 0:
@@ -265,12 +261,9 @@ class Race(commands.Cog):
     @setrace.command()
     async def mode(self, ctx, mode: str):
         """Changes the race mode
-
         Race can either be in normal mode or zoo mode.
-
         Normal Mode:
             All racers are turtles.
-
         Zoo Mode:
             Racers are randomly selected from a list of animals with
             different attributes.
@@ -284,19 +277,15 @@ class Race(commands.Cog):
     @setrace.command()
     async def prize(self, ctx, prize: int):
         """Sets the prize pool for winners.
-
         Set the prize to 0 if you do not wish any credits to be distributed.
-
         When prize pooling is enabled (see `setrace pool`) the prize will be
         distributed as follows:
             1st place 60%
             2nd place 30%
             3rd place 10%.
-
         Example:
             100 results in 60, 30, 10
             130 results in 78, 39, 13
-
         When prize pooling is disabled, only first place will win, and they take
         100% of the winnings.
         """
@@ -313,10 +302,8 @@ class Race(commands.Cog):
     @setrace.command(name="togglepool")
     async def _tooglepool(self, ctx):
         """Toggles on/off prize pooling.
-
         Makes it so that prizes are pooled between 1st, 2nd, and 3rd.
         It's a 60/30/10 split rounded to the nearest whole number.
-
         There must be at least four human players, otherwise, only first
         place wins.
         """
@@ -327,10 +314,8 @@ class Race(commands.Cog):
     @setrace.command()
     async def payoutmin(self, ctx, players: int):
         """Sets the number of players needed to payout prizes and bets.
-
         This sets the required number of players needed to payout prizes.
         If the number of racers aren't met, then nothing is paid out.
-
         If you want race to always pay out, then set players to 0.
         """
         if players < 0:
@@ -496,7 +481,7 @@ class Race(commands.Cog):
     async def run_game(self, ctx):
         players = await self._game_setup(ctx)
         setup = "\u200b\n" + "\n".join(
-            f"<a:Crown:751675946548854915> **{animal.current}** <:Elixir:751676047740764221>  [{jockey.name}]" for animal, jockey in players
+            f"<a:Crown:751675946548854915>  **{animal.current}** <:Elixir:751676047740764221>[{jockey.name}]" for animal, jockey in players
         )
         track = await ctx.send(setup)
         while not all(animal.position == 0 for animal, jockey in players):
@@ -505,10 +490,10 @@ class Race(commands.Cog):
             fields = []
             for animal, jockey in players:
                 if animal.position == 0:
-                    fields.append(f" <a:Crown:751675946548854915>  **{animal.current}** <:Elixir:751676047740764221>   [{jockey.name}]")
+                    fields.append(f"<a:Crown:751675946548854915>  **{animal.current}** <:Elixir:751676047740764221>  [{jockey.name}]")
                     continue
                 animal.move()
-                fields.append(f" <a:Crown:751675946548854915>  **{animal.current}** <:Elixir:751676047740764221>   [{jockey.name}]")
+                fields.append(f"<a:Crown:751675946548854915>  **{animal.current}** <:Elixir:751676047740764221>  [{jockey.name}]")
                 if animal.position == 0 and len(self.winners) < 3:
                     self.winners.append((jockey, animal))
             t = "\u200b\n" + "\n".join(fields)
