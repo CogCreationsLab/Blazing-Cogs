@@ -101,7 +101,7 @@ class Race(commands.Cog):
 
         channel = ctx.message.channel
         if channel.name != "race":
-            return await self.bot.say("You cannot run this command in this channel. Please run this command at #race")    
+            return await ctx.send("You cannot run this command in this channel. Please run this command at #race")    
         
     @race.command()
     async def stats(self, ctx, user: discord.Member = None):
