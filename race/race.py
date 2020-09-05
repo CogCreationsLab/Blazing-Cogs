@@ -65,7 +65,7 @@ class Race(commands.Cog):
         pass
 
     @race.command()
-    async def enter(self, ctx):
+    async def start(self, ctx):
         """Begins a new race.
 
         You cannot start a new race until the active on has ended.
@@ -98,6 +98,27 @@ class Race(commands.Cog):
         msg, embed = self._build_end_screen(settings, currency, color)
         await ctx.send(content=msg, embed=embed)
         await self._race_teardown(settings)
+        
+        """Allows you to enter the race.
+
+        This command will return silently if a race has already started.
+        By not repeatedly telling the user that they can't enter the race, this
+        prevents spam.
+
+        """
+        if self.started:
+            return await ctx.send(
+                "A race has already started.  Please wait for the first one to finish before entering or starting a race."
+            )
+        elif not self.active:
+            return await ctx.send("A race must be started before you can enter.")
+        elif ctx.author in self.players:
+            return await ctx.send("You have already entered the race.")
+        elif len(self.players) >= 14:
+            return await ctx.send("The maximum number of players has been reached.")
+        else:
+            self.players.append(ctx.author)
+            await ctx.send(f"{ctx.author.mention} has joined the race.")
 
     @race.command()
     async def stats(self, ctx, user: discord.Member = None):
@@ -137,29 +158,6 @@ class Race(commands.Cog):
             currency = await bank.get_currency_name(ctx.guild)
             await bank.withdraw_credits(ctx.author, bet)
             await ctx.send(f"{ctx.author.mention} placed a {bet} {currency} bet on {str(user)}.")
-
-    @race.command()
-    async def enter(self, ctx):
-        """Allows you to enter the race.
-
-        This command will return silently if a race has already started.
-        By not repeatedly telling the user that they can't enter the race, this
-        prevents spam.
-
-        """
-        if self.started:
-            return await ctx.send(
-                "A race has already started.  Please wait for the first one to finish before entering or starting a race."
-            )
-        elif not self.active:
-            return await ctx.send("A race must be started before you can enter.")
-        elif ctx.author in self.players:
-            return await ctx.send("You have already entered the race.")
-        elif len(self.players) >= 14:
-            return await ctx.send("The maximum number of players has been reached.")
-        else:
-            self.players.append(ctx.author)
-            await ctx.send(f"{ctx.author.mention} has joined the race.")
 
     @race.command(hidden=True)
     @checks.admin_or_permissions(administrator=True)
