@@ -73,14 +73,14 @@ class Race(commands.Cog):
         The user who started the race is automatically entered into the race.
         """
         if self.active:
-            return await ctx.send("A race is already in progress!  Type **__[p]race enter__** to enter!")
+            return await ctx.send("A race is already in progress!  Type **__!b race enter__** to enter!")
         self.active = True
         self.players.append(ctx.author)
         wait = await self.config.guild(ctx.guild).Wait()
         current = await self.config.guild(ctx.guild).Games_Played()
         await self.config.guild(ctx.guild).Games_Played.set(current + 1)
         await ctx.send(
-            f"🚩 A race has begun! Type {ctx.prefix}race enter "
+            f"🚩 A race has begun! Type **__!b race enter__** "
             f"to join the race! 🚩\nThe race will begin in "
             f"{wait} seconds!\n\n**{ctx.author.mention}** entered the race!"
         )
@@ -147,7 +147,7 @@ class Race(commands.Cog):
                 "A race has already started.  Please wait for the first one to finish before entering or starting a race."
             )
         elif not self.active:
-            return await ctx.send("A race must be started using **__{ctx.prefix}__** race start before you can enter.")
+            return await ctx.send("A race must be started using **__!b race start__** before you can enter.")
         elif ctx.author in self.players:
             return await ctx.send("You have already entered the race.")
         elif len(self.players) >= 14:
