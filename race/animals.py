@@ -1,9 +1,9 @@
 import random
 
 racers = (
-    (self.emoji('Bandit'), 'predator'),
-    (self.emoji('MegaKnight'), 'predator'),
-    (self.emoji('BattleRam'), 'predator'),
+    (emoji('Bandit'), 'predator'),
+    (emoji('MegaKnight'), 'predator'),
+    (emoji('BattleRam'), 'predator'),
 )
 
 
