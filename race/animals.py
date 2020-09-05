@@ -1,11 +1,10 @@
 import random
 
 racers = (
-    ("Bandit"), "predator"),
-    ("MegaKnight"), "predator"),
-    ("BattleRam'), "predator"),
+    (":Bandit:"), "predator"),
+    (":MegaKnight:"), "predator"),
+    (":BattleRam:"), "predator"),
 )
-
 
 class Animal:
     def __init__(self, emoji, _type):
