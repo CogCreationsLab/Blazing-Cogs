@@ -147,7 +147,7 @@ class Race(commands.Cog):
                 "A race has already started.  Please wait for the first one to finish before entering or starting a race."
             )
         elif not self.active:
-            return await ctx.send("A race must be started using `{ctx.prefix} race start` before you can enter.")
+            return await ctx.send("A race must be started using `[p]race start` before you can enter.")
         elif ctx.author in self.players:
             return await ctx.send("You have already entered the race.")
         elif len(self.players) >= 14:
