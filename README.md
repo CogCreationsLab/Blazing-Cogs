@@ -5,7 +5,7 @@
 
 Made with Python and [RED](https://github.com/Cog-Creators/Red-DiscordBot).
 
-If you want to see this bot in action, join the Blazing Family Discord at [blazingclans.com/discord](http://discord.gg/Cvwx8RJ)
+If you want to see this bot in action, join the Blazing Family Discord at [blazingclans.com/discord](https://discord.gg/pz5E5RB)
 
 
 ## Cogs
