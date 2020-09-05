@@ -1,9 +1,9 @@
 import random
 
 racers = (
-    (":Bandit:", "fast"),
-    (":MegaKnight:", "fast"),
-    (":BattleRam:", "fast"),
+    ("<:Bandit:751676116280016927> ", "fast"),
+    ("<:MegaKnight:751676158554144908> ", "fast"),
+    ("<:BattleRam:751676202284089384> ", "fast"),
 )
 
 
