@@ -65,7 +65,7 @@ class Race(commands.Cog):
         pass
 
     @race.command()
-    async def start(self, ctx):
+    async def enter(self, ctx):
         """Begins a new race.
 
         You cannot start a new race until the active on has ended.
