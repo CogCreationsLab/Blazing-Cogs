@@ -1,10 +1,42 @@
 import random
 
 racers = (
-    (":Bandit:"), "predator"),
-    (":MegaKnight:"), "predator"),
-    (":BattleRam:"), "predator"),
+    (":rabbit2:", "fast"),
+    (":monkey:", "fast"),
+    (":cat2:", "fast"),
+    (":mouse2:", "slow"),
+    (":chipmunk:", "fast"),
+    (":rat:", "fast"),
+    (":dove:", "fast"),
+    (":bird:", "fast"),
+    (":dromedary_camel:", "steady"),
+    (":camel:", "steady"),
+    (":dog2:", "steady"),
+    (":poodle:", "steady"),
+    (":racehorse:", "steady"),
+    (":ox:", "abberant"),
+    (":cow2:", "abberant"),
+    (":elephant:", "abberant"),
+    (":water_buffalo:", "abberant"),
+    (":ram:", "abberant"),
+    (":goat:", "abberant"),
+    (":sheep:", "abberant"),
+    (":leopard:", "predator"),
+    (":tiger2:", "predator"),
+    (":dragon:", "special"),
+    (":unicorn:", "special"),
+    (":turtle:", "slow"),
+    (":bug:", "slow"),
+    (":rooster:", "slow"),
+    (":snail:", "slow"),
+    (":scorpion:", "slow"),
+    (":crocodile:", "slow"),
+    (":pig2:", "slow"),
+    (":turkey:", "slow"),
+    (":duck:", "slow"),
+    (":baby_chick:", "slow"),
 )
+
 
 class Animal:
     def __init__(self, emoji, _type):
