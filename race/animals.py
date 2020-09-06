@@ -61,6 +61,15 @@ racers = (
     ("<:RoyalGiantCard:751922710510305311>", "fast"),
     ("<:RascalsCard:751922733637566535>", "slow"),
     ("<:RoyalRecruitsCard:751922766428504065>", "abberant"),
+    ("<:FirecrackerCard:751922870594174996>", "fast"),
+    ("<:ElectroDragonCard:751922941645815998>", "slow"),
+    ("<:BattleHealerCard:751922963820839024>", "slow"),
+    ("<:FishermanCard:751923000059756666>", "slow"),
+    ("<:ElixirGolemCard:751923025590485064>", "slow"),
+    ("<:RamRiderCard:751923056036937738>", "fast"),
+    ("<:WallBreakersCard:751923158688464898>", "fast"),
+    ("<:GoblinCageCard:751923184273588244>", "predator"),
+    ("<:SkeletonDragonsCard:751923209640738856>", "slow"),
 )
 
 
