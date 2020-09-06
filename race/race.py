@@ -75,6 +75,11 @@ class Race(commands.Cog):
 
         The user who started the race is automatically entered into the race.
         """
+        
+        channel = ctx.message.channel
+        if channel.name != "race":
+            return await ctx.send("You cannot run this command in this channel. Please run this command at #race") 
+        
         if self.active:
             return await ctx.send("A race is already in progress!  Type `[p]race enter` to enter!")
         self.active = True
@@ -97,11 +102,7 @@ class Race(commands.Cog):
         color = await ctx.embed_colour()
         msg, embed = self._build_end_screen(settings, currency, color)
         await ctx.send(content=msg, embed=embed)
-        await self._race_teardown(settings)
-
-        channel = ctx.message.channel
-        if channel.name != "race":
-            return await ctx.send("You cannot run this command in this channel. Please run this command at #race")    
+        await self._race_teardown(settings)   
         
     @race.command()
     async def stats(self, ctx, user: discord.Member = None):
