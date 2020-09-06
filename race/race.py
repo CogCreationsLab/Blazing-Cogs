@@ -78,7 +78,7 @@ class Race(commands.Cog):
         
         channel = ctx.message.channel
         if channel.name != "race":
-            return await ctx.send("You cannot run this command in this channel. Please run this command at #race") 
+            return await ctx.send("You cannot run this command in this channel. Please run this command in <#667288014799503360>") 
         
         if self.active:
             return await ctx.send("A race is already in progress!  Type `[p]race enter` to enter!")
@@ -88,7 +88,7 @@ class Race(commands.Cog):
         current = await self.config.guild(ctx.guild).Games_Played()
         await self.config.guild(ctx.guild).Games_Played.set(current + 1)
         await ctx.send(
-            f"🚩 A race has begun! Type {ctx.prefix}race enter "
+            f"🚩 A <@751696579286663242> has begun! Type **__!b race enter__** "
             f"to join the race! 🚩\nThe race will begin in "
             f"{wait} seconds!\n\n**{ctx.author.mention}** entered the race!"
         )
@@ -152,6 +152,11 @@ class Race(commands.Cog):
         prevents spam.
 
         """
+        
+        channel = ctx.message.channel
+        if channel.name != "race":
+            return await ctx.send("You cannot run this command in this channel. Please run this command in <#667288014799503360>") 
+                        
         if self.started:
             return await ctx.send(
                 "A race has already started.  Please wait for the first one to finish before entering or starting a race."
@@ -505,7 +510,7 @@ class Race(commands.Cog):
     async def run_game(self, ctx):
         players = await self._game_setup(ctx)
         setup = "\u200b\n" + "\n".join(
-            f"<a:gifBlueCrown:398297872132472842> **{animal.current}** <:Elixir:751676047740764221>[{jockey.name}]" for animal, jockey in players
+            f"<a:Crown:751675946548854915> **{animal.current}** <:Elixir:751676047740764221>[{jockey.name}]" for animal, jockey in players
         )
         track = await ctx.send(setup)
         while not all(animal.position == 0 for animal, jockey in players):
@@ -514,10 +519,10 @@ class Race(commands.Cog):
             fields = []
             for animal, jockey in players:
                 if animal.position == 0:
-                    fields.append(f"<a:gifBlueCrown:398297872132472842> **{animal.current}** <:Elixir:751676047740764221>  [{jockey.name}]")
+                    fields.append(f"<a:Crown:751675946548854915> **{animal.current}** <:Elixir:751676047740764221>  [{jockey.name}]")
                     continue
                 animal.move()
-                fields.append(f"<a:gifBlueCrown:398297872132472842> **{animal.current}** <:Elixir:751676047740764221>  [{jockey.name}]")
+                fields.append(f"<a:Crown:751675946548854915> **{animal.current}** <:Elixir:751676047740764221>  [{jockey.name}]")
                 if animal.position == 0 and len(self.winners) < 3:
                     self.winners.append((jockey, animal))
             t = "\u200b\n" + "\n".join(fields)
