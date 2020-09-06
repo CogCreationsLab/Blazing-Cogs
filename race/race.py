@@ -88,7 +88,7 @@ class Race(commands.Cog):
         current = await self.config.guild(ctx.guild).Games_Played()
         await self.config.guild(ctx.guild).Games_Played.set(current + 1)
         await ctx.send(
-            f"🚩 A <@!751696579286663242> has begun! Type **__!b race enter__** "
+            f"🚩 A <@&751696579286663242> has begun! Type **__!b race enter__** "
             f"to join the race! 🚩\nThe race will begin in "
             f"{wait} seconds!\n\n**{ctx.author.mention}** entered the race!"
         )
