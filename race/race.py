@@ -90,7 +90,7 @@ class Race(commands.Cog):
         await ctx.send(
             f"🚩 A **{ctx.author.mention}** has started a race! Type **__!b race enter__** "
             f"to join the race! 🚩\nThe <@&751696579286663242> will begin in "
-            f"{wait} seconds!
+            f"{wait} seconds!"
         )
         await asyncio.sleep(wait)
         self.started = True
