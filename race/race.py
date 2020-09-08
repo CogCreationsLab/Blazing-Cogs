@@ -89,7 +89,7 @@ class Race(commands.Cog):
         await self.config.guild(ctx.guild).Games_Played.set(current + 1)
         await ctx.send(
             f"🚩 **{ctx.author.mention}** has started a race!\nType `!b race enter` "
-            f"to join the race! 🚩\n\tThe <@&751696579286663242> will begin in "
+            f"to join the race! 🚩\n\t\tThe <@&751696579286663242> will begin in "
             f"{wait} seconds!"
         )
         await asyncio.sleep(wait)
