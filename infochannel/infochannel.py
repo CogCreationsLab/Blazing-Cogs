@@ -151,7 +151,7 @@ class InfoChannel(Cog):
 
         # Then create the new one
         channel = await guild.create_voice_channel(
-            "Total Humans:", reason="InfoChannel make", overwrites=overwrites
+            "Members:", reason="InfoChannel make", overwrites=overwrites
         )
         await self.config.guild(guild).channel_id.set(channel.id)
 
@@ -221,7 +221,7 @@ class InfoChannel(Cog):
         # Gets count of actual users
         total = lambda x: not x.bot
         human_num = len([m for m in guild.members if total(m)])
-        # human_msg = f"Total Humans: {num}"
+        # human_msg = f"Members: {num}"
 
         channel_id = guild_data["channel_id"]
         if channel_id is None:
