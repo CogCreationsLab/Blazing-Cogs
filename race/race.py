@@ -83,19 +83,6 @@ class Race(commands.Cog):
         if self.active:
             return await ctx.send("A race is already in progress!  Type `[p]race enter` to enter!")
         self.active = True
-        
-        if not await bank.can_spend(ctx.author, cost):
-            return await self.bot.say("You do not meet the cost of entry. You need atleast {} credits.".format(cost))
-        if len(data['Players']) == 10:
-            return await self.bot.say("There are no more spots left in the race!")
-        else:
-            await bank.withdraw_credits(ctx.author,cost)
-        
-        if await bank.can_spend(ctx.author, cost):
-            await bank.withdraw_credits(ctx.author,cost)
-        else:
-            return await self.bot.say("You do not meet the cost of entry. You need atleast {} credits.".format(cost))
-
         self.players.append(ctx.author)
         wait = await self.config.guild(ctx.guild).Wait()
         current = await self.config.guild(ctx.guild).Games_Played()
@@ -116,19 +103,7 @@ class Race(commands.Cog):
         msg, embed = self._build_end_screen(settings, currency, color)
         await ctx.send(content=msg, embed=embed)
         await self._race_teardown(settings)   
-    
-    def bank_check(self, settings, user):
-        bank = self.bot.get_cog('Economy').bank
-        amount = settings["Cost"]
-        if bank.account_exists(user):
-            try:
-                if bank.can_spend(user, amount):
-                    return True
-                else:
-                    return False
-            except:
-                return False
-    
+        
     @race.command()
     async def stats(self, ctx, user: discord.Member = None):
         """Display your race stats."""
@@ -206,21 +181,6 @@ class Race(commands.Cog):
         self.clear_local()
         await ctx.send("Race cleared")
 
-    @race.command()
-    @checks.admin_or_permissions(administrator=True)
-    async def _cost_setrace(self, ctx, num: int):
-        """Set the cost to enter the race
-        Returns:
-            Bot replies with invalid mode
-            Bot replies with valid mode and saves choice
-        """
-
-        server = ctx.message.server
-        settings = self.check_config(server)
-        settings['Cost'] = num
-        self.save_settings()
-        await self.bot.say("Cost set to {} credits.".format(num))                    
-                        
     @race.command()
     @checks.admin_or_permissions(administrator=True)
     async def wipe(self, ctx):
@@ -307,8 +267,8 @@ class Race(commands.Cog):
             return await ctx.send("That means they win nothing. Just turn off betting.")
 
         await self.config.guild(ctx.guild).Bet_Multiplier.set(multiplier)
-        await ctx.send(f"Betting multiplier set to {multiplier}.")            
-                        
+        await ctx.send(f"Betting multiplier set to {multiplier}.")
+
     @_bet.command()
     async def toggle(self, ctx):
         """Toggles betting on and off."""
