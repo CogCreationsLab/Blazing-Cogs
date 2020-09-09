@@ -95,6 +95,18 @@ class Race(commands.Cog):
             await bank.withdraw_credits(ctx.author,cost)
         else:
             return await self.bot.say("You do not meet the cost of entry. You need atleast {} credits.".format(cost))
+        
+    def bank_check(self, settings, user):
+        bank = self.bot.get_cog('Economy').bank
+        amount = settings["Cost"]
+        if bank.account_exists(user):
+            try:
+                if bank.can_spend(user, amount):
+                    return True
+                else:
+                    return False
+            except:
+                return False
 
         self.players.append(ctx.author)
         wait = await self.config.guild(ctx.guild).Wait()
@@ -295,8 +307,8 @@ class Race(commands.Cog):
             return await ctx.send("That means they win nothing. Just turn off betting.")
 
         await self.config.guild(ctx.guild).Bet_Multiplier.set(multiplier)
-        await ctx.send(f"Betting multiplier set to {multiplier}.")
-
+        await ctx.send(f"Betting multiplier set to {multiplier}.")            
+                        
     @_bet.command()
     async def toggle(self, ctx):
         """Toggles betting on and off."""
