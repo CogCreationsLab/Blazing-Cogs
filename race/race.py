@@ -23,6 +23,7 @@ __version__ = "2.0.15"
 
 guild_defaults = {
     "Wait": 60,
+    "Cooldown": 300,
     "Mode": "normal",
     "Prize": 100,
     "Pooling": False,
@@ -50,6 +51,7 @@ class Race(commands.Cog):
         self.winners = []
         self.players = []
         self.bets = {}
+        self.cooldown = {}
 
     async def red_delete_data_for_user(
         self, *, requester: Literal["discord", "owner", "user", "user_strict"], user_id: int
