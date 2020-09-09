@@ -66,7 +66,9 @@ class Race(commands.Cog):
     async def race(self, ctx):
         """Race related commands."""
         pass
-
+    
+    @cooldown.command(1, 300, commands.BucketType.user)
+    
     @race.command()
     async def start(self, ctx):
         """Begins a new race.
@@ -82,8 +84,6 @@ class Race(commands.Cog):
         channel = ctx.message.channel
         if channel.name != "race":
             return await ctx.send("You cannot run this command in this channel. Please run this command in <#667288014799503360>")
-        
-    @cooldown.command(1, 300, commands.BucketType.user)
         
         if self.active:
             return await ctx.send("A race is already in progress!  Type `[p]race enter` to enter!")
