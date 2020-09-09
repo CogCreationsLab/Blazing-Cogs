@@ -94,8 +94,8 @@ class Race(commands.Cog):
             f"{wait} seconds!"
         )
         
-   if time.time()-cooldown<timer:
-            return await ctx.send("You need to wait {} before starting another race.".format(self.time_format(int(timer-(time.time()-cooldown)))))
+        if time.time() - cooldown < timer:
+            return await self.bot.say("You need to wait {} before starting another race.".format(self.time_format(int(timer - (time.time() - cooldown)))))
 
         await asyncio.sleep(wait)
         self.started = True
