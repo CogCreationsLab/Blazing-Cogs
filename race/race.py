@@ -22,6 +22,7 @@ __version__ = "2.0.15"
 
 guild_defaults = {
     "Wait": 60,
+    "Cooldown": 300,
     "Mode": "normal",
     "Prize": 100,
     "Pooling": False,
@@ -92,6 +93,10 @@ class Race(commands.Cog):
             f"to join the race! 🚩\n\t\tThe <@&751696579286663242> will begin in "
             f"{wait} seconds!"
         )
+        
+        if time.time() - cooldown < timer:
+            return await self.bot.say("You need to wait {} before starting another race.".format(self.time_format(int(timer - (time.time() - cooldown)))))
+        
         await asyncio.sleep(wait)
         self.started = True
         await ctx.send("🏁 The race is now in progress. 🏁")
@@ -165,11 +170,14 @@ class Race(commands.Cog):
             return await ctx.send("A race must be started before you can enter.")
         elif ctx.author in self.players:
             return await ctx.send("You have already entered the race.")
-        elif len(self.players) >= 14:
+        elif len(self.players) >= 10:
             return await ctx.send("The maximum number of players has been reached.")
         else:
             self.players.append(ctx.author)
             await ctx.send(f"{ctx.author.mention} has joined the race.")
+                        
+        if time.time() - cooldown < timer:
+            return await self.bot.say("You need to wait {} before starting another race.".format(self.time_format(int(timer - (time.time() - cooldown)))))             
 
     @race.command(hidden=True)
     @checks.admin_or_permissions(administrator=True)
