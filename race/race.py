@@ -4,7 +4,6 @@
 # Standard Library
 import asyncio
 import random
-import time
 from typing import Literal
 
 # Red
@@ -23,7 +22,6 @@ __version__ = "2.0.15"
 
 guild_defaults = {
     "Wait": 60,
-    "Cooldown": 300,
     "Mode": "normal",
     "Prize": 100,
     "Pooling": False,
@@ -51,7 +49,6 @@ class Race(commands.Cog):
         self.winners = []
         self.players = []
         self.bets = {}
-        self.cooldown = {}
 
     async def red_delete_data_for_user(
         self, *, requester: Literal["discord", "owner", "user", "user_strict"], user_id: int
@@ -66,9 +63,7 @@ class Race(commands.Cog):
     async def race(self, ctx):
         """Race related commands."""
         pass
-    
-    @cooldown.command(1, 300, commands.BucketType.user)
-    
+
     @race.command()
     async def start(self, ctx):
         """Begins a new race.
@@ -83,7 +78,7 @@ class Race(commands.Cog):
         
         channel = ctx.message.channel
         if channel.name != "race":
-            return await ctx.send("You cannot run this command in this channel. Please run this command in <#667288014799503360>")
+            return await ctx.send("You cannot run this command in this channel. Please run this command in <#667288014799503360>") 
         
         if self.active:
             return await ctx.send("A race is already in progress!  Type `[p]race enter` to enter!")
@@ -97,8 +92,6 @@ class Race(commands.Cog):
             f"to join the race! 🚩\n\t\tThe <@&751696579286663242> will begin in "
             f"{wait} seconds!"
         )
-        
-
         await asyncio.sleep(wait)
         self.started = True
         await ctx.send("🏁 The race is now in progress. 🏁")
