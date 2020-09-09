@@ -83,7 +83,7 @@ class Race(commands.Cog):
         if channel.name != "race":
             return await ctx.send("You cannot run this command in this channel. Please run this command in <#667288014799503360>")
         
-        cdcheck = await self.cdcheck(ctx, "racecd")
+    @cooldown.command(1, 300, commands.BucketType.user)
         
         if self.active:
             return await ctx.send("A race is already in progress!  Type `[p]race enter` to enter!")
@@ -98,21 +98,6 @@ class Race(commands.Cog):
             f"{wait} seconds!"
         )
         
-    async def cdcheck(self, ctx, race):
-        conf = await self.configglobalcheck(ctx)
-        userconf = await self.configglobalcheckuser(ctx.author)
-        cd = await userconf.cooldowns()
-        racecd = await conf.cooldowns()
-        if cd[race] is None:
-            async with userconf.cooldowns() as cd:
-                cd[race] = int(datetime.datetime.utcnow().timestamp())
-            return True
-        time = int(datetime.datetime.utcnow().timestamp()) - cd[race]
-        if time < racecd[race]:
-            return (False, humanize_timedelta(seconds=racecd[race] - time))
-        async with userconf.cooldowns() as cd:
-            cd[race] = int(datetime.datetime.utcnow().timestamp())
-        return True
 
         await asyncio.sleep(wait)
         self.started = True
