@@ -95,18 +95,6 @@ class Race(commands.Cog):
             await bank.withdraw_credits(ctx.author,cost)
         else:
             return await self.bot.say("You do not meet the cost of entry. You need atleast {} credits.".format(cost))
-        
-    def bank_check(self, settings, user):
-        bank = self.bot.get_cog('Economy').bank
-        amount = settings["Cost"]
-        if bank.account_exists(user):
-            try:
-                if bank.can_spend(user, amount):
-                    return True
-                else:
-                    return False
-            except:
-                return False
 
         self.players.append(ctx.author)
         wait = await self.config.guild(ctx.guild).Wait()
@@ -128,6 +116,18 @@ class Race(commands.Cog):
         msg, embed = self._build_end_screen(settings, currency, color)
         await ctx.send(content=msg, embed=embed)
         await self._race_teardown(settings)   
+    
+    def bank_check(self, settings, user):
+        bank = self.bot.get_cog('Economy').bank
+        amount = settings["Cost"]
+        if bank.account_exists(user):
+            try:
+                if bank.can_spend(user, amount):
+                    return True
+                else:
+                    return False
+            except:
+                return False
     
     @race.command()
     async def stats(self, ctx, user: discord.Member = None):
