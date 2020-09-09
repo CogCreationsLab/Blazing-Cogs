@@ -85,12 +85,12 @@ class Race(commands.Cog):
         self.active = True
         
         if not self.bank_check(settings, author):
-                return await self.bot.say("You do not meet the cost of entry. You need atleast {} credits.".format(cost))
+            return await self.bot.say("You do not meet the cost of entry. You need atleast {} credits.".format(cost))
         if len(data['Players']) == 10:
-                return await self.bot.say("There are no more spots left in the race!")
-            else:
-                bank = self.bot.get_cog('Economy').bank
-                bank.withdraw_credits(author, cost)
+            return await self.bot.say("There are no more spots left in the race!")
+        else:
+            bank = self.bot.get_cog('Economy').bank
+            bank.withdraw_credits(author, cost)
         
         if self.bank_check(settings, author):
             bank = self.bot.get_cog('Economy').bank
