@@ -81,7 +81,9 @@ class Race(commands.Cog):
         
         channel = ctx.message.channel
         if channel.name != "race":
-            return await ctx.send("You cannot run this command in this channel. Please run this command in <#667288014799503360>") 
+            return await ctx.send("You cannot run this command in this channel. Please run this command in <#667288014799503360>")
+        
+        cdcheck = await self.cdcheck(ctx, "racecd")
         
         if self.active:
             return await ctx.send("A race is already in progress!  Type `[p]race enter` to enter!")
