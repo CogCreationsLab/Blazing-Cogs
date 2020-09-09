@@ -4,6 +4,7 @@
 # Standard Library
 import asyncio
 import random
+import time
 from typing import Literal
 
 # Red
@@ -92,6 +93,10 @@ class Race(commands.Cog):
             f"to join the race! 🚩\n\t\tThe <@&751696579286663242> will begin in "
             f"{wait} seconds!"
         )
+        
+   if time.time() - cooldown < timer:
+            return await self.bot.say("You need to wait {} before starting another race.".format(self.time_format(int(timer - (time.time() - cooldown)))))
+
         await asyncio.sleep(wait)
         self.started = True
         await ctx.send("🏁 The race is now in progress. 🏁")
