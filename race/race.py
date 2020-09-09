@@ -96,8 +96,21 @@ class Race(commands.Cog):
             f"{wait} seconds!"
         )
         
-        if time.time() - cooldown < timer:
-            return await self.bot.say("You need to wait {} before starting another race.".format(self.time_format(int(timer - (time.time() - cooldown)))))
+    async def cdcheck(self, ctx, race):
+        conf = await self.configglobalcheck(ctx)
+        userconf = await self.configglobalcheckuser(ctx.author)
+        cd = await userconf.cooldowns()
+        racecd = await conf.cooldowns()
+        if cd[race] is None:
+            async with userconf.cooldowns() as cd:
+                cd[race] = int(datetime.datetime.utcnow().timestamp())
+            return True
+        time = int(datetime.datetime.utcnow().timestamp()) - cd[race]
+        if time < racecd[race]:
+            return (False, humanize_timedelta(seconds=racecd[race] - time))
+        async with userconf.cooldowns() as cd:
+            cd[race] = int(datetime.datetime.utcnow().timestamp())
+        return True
 
         await asyncio.sleep(wait)
         self.started = True
