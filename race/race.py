@@ -104,22 +104,6 @@ class Race(commands.Cog):
         await ctx.send(content=msg, embed=embed)
         await self._race_teardown(settings)   
     
-    @race.command(name="cost", pass_context=True)
-    @checks.admin_or_permissions(manage_server=True)
-    async def _cost_setrace(self, ctx, num: int):
-        """Set the cost to enter the race
-        Returns:
-            Bot replies with invalid mode
-            Bot replies with valid mode and saves choice
-        """
-
-        server = ctx.message.server
-        settings = self.check_config(server)
-        settings['Cost'] = num
-        self.save_settings()
-        await self.bot.say("Cost set to {} credits.".format(num))
-
-    
     @race.command()
     async def stats(self, ctx, user: discord.Member = None):
         """Display your race stats."""
@@ -197,6 +181,21 @@ class Race(commands.Cog):
         self.clear_local()
         await ctx.send("Race cleared")
 
+    @race.command()
+    @checks.admin_or_permissions(administrator=True)
+    async def _cost_setrace(self, ctx, num: int):
+        """Set the cost to enter the race
+        Returns:
+            Bot replies with invalid mode
+            Bot replies with valid mode and saves choice
+        """
+
+        server = ctx.message.server
+        settings = self.check_config(server)
+        settings['Cost'] = num
+        self.save_settings()
+        await self.bot.say("Cost set to {} credits.".format(num))                    
+                        
     @race.command()
     @checks.admin_or_permissions(administrator=True)
     async def wipe(self, ctx):
