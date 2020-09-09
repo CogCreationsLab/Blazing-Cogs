@@ -84,14 +84,14 @@ class Race(commands.Cog):
             return await ctx.send("A race is already in progress!  Type `[p]race enter` to enter!")
         self.active = True
         
-        if not await bank.can_spend(settings, author):
+        if not await bank.can_spend(cost, author):
             return await self.bot.say("You do not meet the cost of entry. You need atleast {} credits.".format(cost))
         if len(data['Players']) == 10:
             return await self.bot.say("There are no more spots left in the race!")
         else:
             await bank.withdraw_credits(ctx.author,cost)
         
-        if await bank.can_spend(settings, author):
+        if await bank.can_spend(cost, author):
             await bank.withdraw_credits(ctx.author,cost)
         else:
             return await self.bot.say("You do not meet the cost of entry. You need atleast {} credits.".format(cost))
